@@ -6,6 +6,7 @@
 #include "me_app.h"
 #include "me_canvas.h"
 #include "me_constants.h"
+#include "me_font_f64.h"
 #include "me_geometry.h"
 #include "me_math.h"
 #include "me_object_bag.h"
