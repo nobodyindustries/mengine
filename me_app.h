@@ -106,7 +106,7 @@ void me_app_run(MEApp *app) {
     int tick_next = 0;
     SDL_Event event;
 
-#ifdef ME_DEBUG
+#ifdef MEDEBUG
     Uint32 old_tick = 0;
 #endif
 
@@ -156,7 +156,7 @@ void me_app_run(MEApp *app) {
             }
         }
 
-#ifdef ME_DEBUG
+#ifdef MEDEBUG
         old_tick = SDL_GetTicks();
         printf("Frame took %d ticks\n", old_tick - tick);
 #endif
