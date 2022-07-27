@@ -67,7 +67,8 @@ void me_object_bag_add(MEObjectBag **bag, void *object) {
 
 // In order to remove an object it makes no sense to use NULL as object_destroy function
 void me_object_bag_remove(MEObjectBag **bag, int idx, MEObjectDestroyFunction object_destroy) {
-    object_destroy((*bag)->objects[idx]);
+    if(object_destroy != NULL)
+      object_destroy((*bag)->objects[idx]);
     (*bag)->objects[idx] = NULL;
     int internal_idx;
     // Reposition all the rest of the objects in the bag

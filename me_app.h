@@ -126,8 +126,10 @@ void me_app_run(MEApp *app) {
         if (me_scene_manager_length(app->scene_manager) > 0) {
             current_scene = me_scene_manager_get_current_scene(app->scene_manager);
             if (current_scene != NULL) {
-                current_scene->me_scene_update(current_scene, app->frame);
-                current_scene->me_scene_paint(current_scene, &(app->canvas));
+                if(current_scene->me_scene_update != NULL)
+                  current_scene->me_scene_update(current_scene, app->frame);
+                if(current_scene->me_scene_paint != NULL)
+                  current_scene->me_scene_paint(current_scene, &(app->canvas));
             }
         }
 
@@ -138,14 +140,16 @@ void me_app_run(MEApp *app) {
             // EVENT HANDLING
             // Scene
             if (current_scene != NULL) {
-                MESceneEventReturn ret = current_scene->me_scene_event_process(
-                        current_scene,
-                        event,
-                        &(app->next_scene));
-                me_scene_manager_set_current_scene(&(app->scene_manager), app->next_scene);
-                if (ret == ME_SCENE_RETURN_QUIT) {
-                    me_app_destroy(&app);
-                    return;
+                if(current_scene->me_scene_event_process != NULL) {
+                  MESceneEventReturn ret = current_scene->me_scene_event_process(
+                          current_scene,
+                          event,
+                          &(app->next_scene));
+                  me_scene_manager_set_current_scene(&(app->scene_manager), app->next_scene);
+                  if (ret == ME_SCENE_RETURN_QUIT) {
+                      me_app_destroy(&app);
+                      return;
+                  }
                 }
             }
             // Global, overrules scene (ex. SDL_QUIT)
