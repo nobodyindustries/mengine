@@ -37,6 +37,17 @@ typedef struct me_rectangle {
     double theta;
 } MERectangle;
 
+
+/*
+ * c(x, y) -> center
+ * r -> radius
+ */
+typedef struct me_circle {
+  MEVector2 c;
+  int r;
+} MECircle;
+
+
 /*
  * Rotates a vector around (0,0)
  */

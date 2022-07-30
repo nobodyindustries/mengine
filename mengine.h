@@ -5,6 +5,7 @@
 
 #include "me_app.h"
 #include "me_canvas.h"
+#include "me_color.h"
 #include "me_constants.h"
 #include "me_font_f64.h"
 #include "me_geometry.h"

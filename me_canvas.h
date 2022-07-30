@@ -2,6 +2,7 @@
 #define ME_CANVAS_H
 
 #include "me_geometry.h"
+#include "me_color.h"
 #include "me_math.h"
 #include <SDL.h>
 #include <math.h>
@@ -34,19 +35,19 @@ void me_canvas_destroy(MECanvas **canvas) {
     free(*canvas);
 }
 
-void me_canvas_set(MECanvas *c, MEVector2 v, Uint32 color) {
+void me_canvas_set(MECanvas *c, MEVector2 v, MEColor color) {
     if (v.x >= 0 && v.x < ME_WINDOW_WIDTH && v.y >= 0 && v.y < ME_WINDOW_HEIGHT) {
         c->pixels[ME_CANVAS_IDX(v.x, v.y)] = color;
     }
 }
 
-void me_canvas_clear(MECanvas *c, Uint32 color) {
+void me_canvas_clear(MECanvas *c, MEColor color) {
     for (int idx = 0; idx < c->height * c->width; idx++) {
         c->pixels[idx] = color;
     }
 }
 
-void me_canvas_draw_line(MECanvas *c, MELine line, Uint32 color) {
+void me_canvas_draw_line(MECanvas *c, MELine line, MEColor color) {
     // These can't be unsigned
     int delta_x = abs(line.v1.x - line.v0.x);
     int slope_x = line.v0.x < line.v1.x ? 1 : -1;
@@ -71,7 +72,7 @@ void me_canvas_draw_line(MECanvas *c, MELine line, Uint32 color) {
     }
 }
 
-void me_canvas_draw_rectangle(MECanvas *c, MERectangle rect, Uint32 color, bool is_filled, Uint32 fill_color) {
+void me_canvas_draw_rectangle(MECanvas *c, MERectangle rect, MEColor color, bool is_filled, MEColor fill_color) {
     // Obtain the center of the rectangle
     MEVector2 center = me_geometry_rectangle_center(rect);
     MEVector2 n_center = (MEVector2){-center.x, -center.y};
@@ -115,5 +116,11 @@ void me_canvas_draw_rectangle(MECanvas *c, MERectangle rect, Uint32 color, bool 
         }
     }
 }
+
+/*
+void me_canvas_draw_circle(MECanvas *c, MECircle circ, Uint32 color, bool is_filled, Uint32 fill_color) {
+  int
+}
+ */
 
 #endif//ME_CANVAS_H

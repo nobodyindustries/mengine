@@ -69,7 +69,7 @@ const unsigned char me_font_f64[56][8] = {
 
 };
 
-void me_font_f64_draw(MECanvas *c, MEVector2 p, int idx, int scale, Uint32 color)
+void me_font_f64_draw(MECanvas *c, MEVector2 p, int idx, int scale, MEColor color)
 {
   Uint32 dx = p.x;
   Uint32 dy = p.y;
@@ -134,7 +134,7 @@ unsigned int me_font_f64_idx(const char c)
   }
 }
 
-void font_64_write_string(MECanvas *c, const char *s, MEVector2 p, Uint32 scale, Uint32 color)
+void font_64_write_string(MECanvas *c, const char *s, MEVector2 p, Uint32 scale, MEColor color)
 {
   const char *cs = s;
   int cx = p.x;
