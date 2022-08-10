@@ -13,5 +13,6 @@
 #include "me_object_bag.h"
 #include "me_scene.h"
 #include "me_scene_manager.h"
+#include "me_sprite.h"
 
 #endif//MENGINE_H
