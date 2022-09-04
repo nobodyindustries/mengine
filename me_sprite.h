@@ -19,6 +19,8 @@ typedef struct me_sprite {
   MEColor *data;      // Pixel data
 } MESprite;
 
+// TODO: Load sprite from data with same format as an array of bytes
+
 // Load sprite from file, will return NULL if error.
 MESprite *me_sprite_load(const char *path, MEVector2 position) {
 
